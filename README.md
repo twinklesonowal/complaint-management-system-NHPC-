@@ -214,37 +214,37 @@ http://127.0.0.1:5000
 
 ## Login Page
 
-> *(Add screenshot here)*
+> <img width="1483" height="903" alt="login png" src="https://github.com/user-attachments/assets/611371cf-760f-44a6-be6d-b630f8b8fb8f" />
+
+
 
 ---
 
 ## Employee Dashboard
 
-> *(Add screenshot here)*
+> <img width="1892" height="990" alt="employee_dashboard png" src="https://github.com/user-attachments/assets/a213e7bb-f600-4f66-ac76-0bbc5de2fbd2" />
+
 
 ---
 
 ## IT Staff Dashboard
 
-> *(Add screenshot here)*
+> <img width="1877" height="972" alt="it_dashboard png" src="https://github.com/user-attachments/assets/9d6b8345-512e-46fa-ab13-a8c14b13bbc2" />
+
 
 ---
 
 ## Manager Dashboard
 
-> *(Add screenshot here)*
+> <img width="1881" height="990" alt="manager_dashboard png" src="https://github.com/user-attachments/assets/d29e3117-b8f7-4ca6-ac87-7f8f7815e39c" />
+
 
 ---
 
 ## Asset Management
 
-> *(Add screenshot here)*
+> <img width="1885" height="983" alt="asset_management png" src="https://github.com/user-attachments/assets/4e84899d-06b6-4cc9-84c5-7d2df87b1505" />
 
----
-
-## Complaint Details
-
-> *(Add screenshot here)*
 
 ---
 
