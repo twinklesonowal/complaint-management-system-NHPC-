@@ -1,0 +1,78 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Raise Complaint{% endblock %}
+
+{% block content %}
+
+<h2>Raise a Complaint</h2>
+
+<hr>
+
+<form method="POST">
+
+    <label>Department</label><br>
+
+    <select name="department">
+
+        <option>Administration</option>
+        <option>Finance</option>
+        <option>HR</option>
+        <option>Electrical</option>
+        <option>Mechanical</option>
+        <option>IT</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Category</label><br>
+
+    <select name="category">
+
+        <option>Computer</option>
+        <option>Printer</option>
+        <option>Network</option>
+        <option>Software</option>
+        <option>UPS</option>
+        <option>Internet</option>
+        <option>Other</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Priority</label><br>
+
+    <select name="priority">
+
+        <option>Low</option>
+        <option selected>Medium</option>
+        <option>High</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Problem Description</label><br>
+
+    <textarea
+        name="problem"
+        rows="6"
+        cols="60"
+        required></textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Submit Complaint
+    </button>
+
+</form>
+
+<br>
+
+<a href="/employee">
+    Back to Dashboard
+</a>
+
+{% endblock %}

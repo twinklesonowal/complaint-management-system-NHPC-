@@ -1,0 +1,107 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Asset Details{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Asset Details</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th width="250">Asset Code</th>
+        <td>{{ asset.asset_code }}</td>
+    </tr>
+
+    <tr>
+        <th>Asset Name</th>
+        <td>{{ asset.asset_name }}</td>
+    </tr>
+
+    <tr>
+        <th>Category</th>
+        <td>{{ asset.category }}</td>
+    </tr>
+
+    <tr>
+        <th>Brand / Supplier</th>
+        <td>{{ asset.brand }}</td>
+    </tr>
+
+    <tr>
+        <th>Model</th>
+        <td>{{ asset.model or "-" }}</td>
+    </tr>
+
+    <tr>
+        <th>Serial Number</th>
+        <td>{{ asset.serial_number or "-" }}</td>
+    </tr>
+
+    <tr>
+        <th>Location</th>
+        <td>{{ asset.location }}</td>
+    </tr>
+
+    <tr>
+        <th>Assigned To</th>
+        <td>{{ asset.assigned_to or "-" }}</td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>
+
+            {% if asset.status == "Active" %}
+                <span class="badge bg-success">Active</span>
+
+            {% elif asset.status == "Scrapped" %}
+                <span class="badge bg-danger">Scrapped</span>
+
+            {% elif asset.status == "Available" %}
+                <span class="badge bg-primary">Available</span>
+
+            {% else %}
+                <span class="badge bg-warning text-dark">
+                    {{ asset.status }}
+                </span>
+
+            {% endif %}
+
+        </td>
+    </tr>
+
+    <tr>
+        <th>Remarks</th>
+        <td>{{ asset.remarks or "-" }}</td>
+    </tr>
+
+</table>
+
+<div class="mt-4">
+
+    <a href="{{ url_for('edit_asset', asset_id=asset.id) }}"
+    class="btn btn-warning">
+
+    Edit Asset
+
+    </a>
+
+    <a href="{{ url_for('delete_asset', asset_id=asset.id) }}"
+    class="btn btn-danger"
+    onclick="return confirm('Delete this asset?')">
+
+    Delete
+
+    </a>
+
+    <a href="{{ url_for('manage_assets') }}"
+       class="btn btn-secondary">
+
+        Back
+
+    </a>
+
+</div>
+
+{% endblock %}

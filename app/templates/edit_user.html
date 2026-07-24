@@ -1,0 +1,155 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-4">Edit User</h2>
+
+    <form method="POST">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Full Name</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="full_name"
+                    value="{{ user.full_name }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Username</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    value="{{ user.username }}"
+                    required>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Password</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="password"
+                    value="{{ user.password }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Email</label>
+
+                <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    value="{{ user.email }}">
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Department</label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="department"
+                    value="{{ user.department }}"
+                    required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">Role</label>
+
+                <select
+                    class="form-select"
+                    name="role">
+
+                    <option value="Employee"
+                        {% if user.role=="Employee" %}selected{% endif %}>
+                        Employee
+                    </option>
+
+                    <option value="IT Staff"
+                        {% if user.role=="IT Staff" %}selected{% endif %}>
+                        IT Staff
+                    </option>
+
+                    <option value="IT Manager"
+                        {% if user.role=="IT Manager" %}selected{% endif %}>
+                        IT Manager
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+
+            <label class="form-label">Status</label>
+
+            <select
+                class="form-select"
+                name="status">
+
+                <option value="Active"
+                    {% if user.status=="Active" %}selected{% endif %}>
+                    Active
+                </option>
+
+                <option value="Inactive"
+                    {% if user.status=="Inactive" %}selected{% endif %}>
+                    Inactive
+                </option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-success">
+
+            Update User
+
+        </button>
+
+        <a href="{{ url_for('manage_users') }}"
+           class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

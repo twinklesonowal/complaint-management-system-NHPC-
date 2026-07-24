@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}My Complaints{% endblock %}
+
+{% block content %}
+
+<h2>My Complaints</h2>
+
+<hr>
+
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Ticket No.</th>
+    <th>Category</th>
+    <th>Priority</th>
+    <th>Status</th>
+</tr>
+
+{% for ticket in tickets %}
+
+<tr>
+
+    <td>{{ ticket.ticket_number }}</td>
+
+    <td>{{ ticket.category }}</td>
+
+    <td>{{ ticket.priority }}</td>
+
+    <td>{{ ticket.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/employee">
+    Back to Dashboard
+</a>
+
+{% endblock %}

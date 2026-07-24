@@ -1,0 +1,201 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Employee Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    <i class="bi bi-person-circle"></i>
+
+    Welcome, {{ name }}
+
+</h2>
+
+<div class="row g-4">
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-primary text-white text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-ticket-perforated fs-1"></i>
+
+                <h2>{{ total }}</h2>
+
+                <p>Total Complaints</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-warning text-dark text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-exclamation-circle fs-1"></i>
+
+                <h2>{{ open }}</h2>
+
+                <p>Open</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-info text-white text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-tools fs-1"></i>
+
+                <h2>{{ progress }}</h2>
+
+                <p>In Progress</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow border-0 bg-success text-white text-center">
+
+            <div class="card-body">
+
+                <i class="bi bi-check-circle fs-1"></i>
+
+                <h2>{{ resolved }}</h2>
+
+                <p>Resolved</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<hr class="my-5">
+
+<h4>
+
+    Quick Actions
+
+</h4>
+
+<div class="row mb-5">
+
+    <div class="col-md-4 d-grid">
+
+        <a href="{{ url_for('create_ticket') }}"
+           class="btn btn-primary btn-lg">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Raise Complaint
+
+        </a>
+
+    </div>
+
+    <div class="col-md-4 d-grid">
+
+        <a href="{{ url_for('my_complaints') }}"
+           class="btn btn-success btn-lg">
+
+            <i class="bi bi-list-task"></i>
+
+            My Complaints
+
+        </a>
+
+    </div>
+
+    <div class="col-md-4 d-grid">
+
+        <a href="{{ url_for('logout') }}"
+           class="btn btn-danger btn-lg">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</div>
+
+<h4 class="mb-3">
+
+    Recent Complaints
+
+</h4>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Ticket</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% if recent %}
+
+        {% for ticket in recent %}
+
+        <tr>
+
+            <td>{{ ticket.ticket_number }}</td>
+
+            <td>{{ ticket.category }}</td>
+
+            <td>{{ ticket.status }}</td>
+
+            <td>{{ ticket.created_at.strftime('%d-%m-%Y') }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <tr>
+
+            <td colspan="4" class="text-center">
+
+                No complaints submitted.
+
+            </td>
+
+        </tr>
+
+    {% endif %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Ticket Details{% endblock %}
+
+{% block content %}
+
+<h2>Ticket Details</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+<label>Ticket Number</label>
+<input class="form-control" value="{{ ticket.ticket_number }}" readonly>
+</div>
+
+<div class="mb-3">
+<label>Employee</label>
+<input class="form-control" value="{{ ticket.employee_name }}" readonly>
+</div>
+
+<div class="mb-3">
+<label>Department</label>
+<input class="form-control" value="{{ ticket.department }}" readonly>
+</div>
+
+<div class="mb-3">
+<label>Category</label>
+<input class="form-control" value="{{ ticket.category }}" readonly>
+</div>
+
+<div class="mb-3">
+<label>Problem</label>
+<textarea class="form-control" rows="5" readonly>{{ ticket.problem }}</textarea>
+</div>
+
+<div class="mb-3">
+<label>Status</label>
+
+<select class="form-select" name="status">
+
+<option {% if ticket.status=="Open" %}selected{% endif %}>Open</option>
+
+<option {% if ticket.status=="In Progress" %}selected{% endif %}>In Progress</option>
+
+<option {% if ticket.status=="Resolved" %}selected{% endif %}>Resolved</option>
+
+<option {% if ticket.status=="Closed" %}selected{% endif %}>Closed</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Assign To</label>
+
+<input
+class="form-control"
+name="assigned_to"
+value="{{ ticket.assigned_to }}">
+
+</div>
+
+<div class="mb-3">
+
+<label>Resolution Notes</label>
+
+<textarea
+class="form-control"
+rows="5"
+name="resolution_notes">{{ ticket.resolution_notes }}</textarea>
+
+</div>
+
+<button class="btn btn-success">
+Save Changes
+</button>
+
+</form>
+
+{% endblock %}

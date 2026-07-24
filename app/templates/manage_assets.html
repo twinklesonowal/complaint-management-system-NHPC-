@@ -1,0 +1,187 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Asset Management{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="mb-1">Asset Inventory</h2>
+
+        <small class="text-muted">
+            Total Assets : <strong>{{ assets|length }}</strong>
+        </small>
+
+    </div>
+
+    <div>
+
+        <a href="{{ url_for('import_assets') }}"
+           class="btn btn-success">
+
+            Import Excel
+
+        </a>
+
+        <a href="{{ url_for('manager_dashboard') }}"
+           class="btn btn-secondary">
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="mb-3">
+
+    <input
+        type="text"
+        id="searchInput"
+        class="form-control"
+        placeholder="Search by Asset Code, Name, Brand or Location...">
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-striped table-hover table-bordered align-middle" id="assetTable">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Asset Code</th>
+            <th>Asset Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Location</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th width="120">Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% if assets %}
+
+        {% for asset in assets %}
+
+        <tr>
+
+            <td>{{ asset.asset_code }}</td>
+
+            <td>{{ asset.asset_name }}</td>
+
+            <td>{{ asset.category }}</td>
+
+            <td>{{ asset.brand }}</td>
+
+            <td>{{ asset.location }}</td>
+
+            <td>
+
+                {% if asset.assigned_to %}
+
+                    {{ asset.assigned_to }}
+
+                {% else %}
+
+                    -
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {% if asset.status == "Available" %}
+
+                    <span class="badge bg-success">
+                        Available
+                    </span>
+
+                {% elif asset.status == "Assigned" %}
+
+                    <span class="badge bg-primary">
+                        Assigned
+                    </span>
+
+                {% elif asset.status == "Scrapped" %}
+
+                    <span class="badge bg-danger">
+                        Scrapped
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-warning text-dark">
+                        {{ asset.status }}
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="{{ url_for('asset_details', asset_id=asset.id) }}"
+                   class="btn btn-info btn-sm">
+
+                    View
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    {% else %}
+
+        <tr>
+
+            <td colspan="8" class="text-center">
+
+                <strong>No assets available.</strong>
+
+            </td>
+
+        </tr>
+
+    {% endif %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+<script>
+
+document.getElementById("searchInput").addEventListener("keyup", function () {
+
+    let filter = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("#assetTable tbody tr");
+
+    rows.forEach(function(row){
+
+        let text = row.innerText.toLowerCase();
+
+        row.style.display = text.includes(filter) ? "" : "none";
+
+    });
+
+});
+
+</script>
+
+{% endblock %}
